@@ -1,0 +1,58 @@
+---
+import FilterButton from './FilterButton.astro';
+
+const filters = [
+    { type: 'All Jobs', icon: '🏢' },
+    { type: 'Central', icon: '🏛️' },
+    { type: 'State', icon: '🏪' }
+];
+---
+
+<div class="filters">
+    {filters.map((filter, index) => (
+        <FilterButton 
+            type={filter.type} 
+            icon={filter.icon} 
+            isActive={index === 0}
+        />
+    ))}
+</div>
+
+<script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const jobCards = document.querySelectorAll('.job-card');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active state
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filter jobs
+            const filterType = button.getAttribute('data-type');
+            jobCards.forEach(card => {
+                const jobType = card.getAttribute('data-type').toLowerCase();
+                if (filterType === 'all jobs' || filterType === jobType) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .filters {
+            flex-wrap: wrap;
+        }
+    }
+</style>

@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import JobCard from '../components/JobCard.astro';
+import JobFilters from '../components/JobFilters.astro';
+
+const jobs = [
+    {
+        id: 1,
+        title: "Railway Group D Recruitment 2024",
+        department: "Indian Railways",
+        type: "Central",
+        lastDate: "2024-05-15",
+        vacancies: 1500,
+        qualification: "10th Pass",
+        salary: "₹18,000 - ₹56,900"
+    },
+    {
+        id: 2,
+        title: "Police Constable Recruitment 2024",
+        department: "State Police Department",
+        type: "State",
+        lastDate: "2024-04-30",
+        vacancies: 800,
+        qualification: "12th Pass",
+        salary: "₹21,700 - ₹69,100"
+    }
+];
+---
+
+<Layout title="Latest Government Jobs">
+    <main>
+        <h1>Latest Government <span class="text-gradient">Job Updates</span></h1>
+        <JobFilters />
+        <div class="job-grid">
+            {jobs.map((job) => (
+                <JobCard job={job} />
+            ))}
+        </div>
+    </main>
+</Layout>
+
+<style>
+    main {
+        margin: auto;
+        padding: 1rem;
+        width: 1200px;
+        max-width: calc(100% - 2rem);
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+
+    .job-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0;
+    }
+</style>

@@ -1,0 +1,43 @@
+---
+interface Props {
+    type: string;
+    icon: string;
+    isActive?: boolean;
+}
+
+const { type, icon, isActive = false } = Astro.props;
+---
+
+<button class={`filter-btn ${isActive ? 'active' : ''}`} data-type={type.toLowerCase()}>
+    <span class="icon">{icon}</span>
+    <span class="text">{type}</span>
+</button>
+
+<style>
+    .filter-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1.2rem;
+        border: 1px solid rgba(var(--accent-light), 25%);
+        background: rgba(var(--accent-dark), 66%);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background: rgb(var(--accent));
+        border-color: rgb(var(--accent));
+        transform: translateY(-2px);
+    }
+
+    .icon {
+        font-size: 1.2rem;
+    }
+
+    .text {
+        font-weight: 500;
+    }
+</style>

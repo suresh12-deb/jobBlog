@@ -1,0 +1,147 @@
+---
+interface Props {
+    job: {
+        title: string;
+        department: string;
+        type: string;
+        lastDate: string;
+        vacancies: number;
+        qualification: string;
+        salary: string;
+    }
+}
+
+const { job } = Astro.props;
+
+function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+}
+
+const typeIcons = {
+    'Central': '🏛️',
+    'State': '🏪'
+};
+---
+
+<div class="job-card" data-type={job.type.toLowerCase()}>
+    <div class="job-type">
+        <span class="type-icon">{typeIcons[job.type]}</span>
+        {job.type}
+    </div>
+    <h2>{job.title}</h2>
+    <div class="job-info">
+        <div class="info-item">
+            <span class="icon">🏢</span>
+            <span><strong>Department:</strong> {job.department}</span>
+        </div>
+        <div class="info-item">
+            <span class="icon">📅</span>
+            <span><strong>Last Date:</strong> {formatDate(job.lastDate)}</span>
+        </div>
+        <div class="info-item">
+            <span class="icon">👥</span>
+            <span><strong>Vacancies:</strong> {job.vacancies}</span>
+        </div>
+        <div class="info-item">
+            <span class="icon">🎓</span>
+            <span><strong>Qualification:</strong> {job.qualification}</span>
+        </div>
+        <div class="info-item">
+            <span class="icon">💰</span>
+            <span><strong>Salary:</strong> {job.salary}</span>
+        </div>
+    </div>
+    <button class="apply-btn">
+        <span>View Details</span>
+        <span class="arrow">→</span>
+    </button>
+</div>
+
+<style>
+    .job-card {
+        background: rgba(var(--accent-dark), 0.2);
+        border: 1px solid rgba(var(--accent-light), 0.2);
+        border-radius: 10px;
+        padding: 1.5rem;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .job-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(var(--accent-light), 0.4);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .job-type {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgb(var(--accent));
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .type-icon {
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        padding-right: 6rem;
+        color: rgb(var(--accent-light));
+    }
+
+    .job-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .icon {
+        font-size: 1.1rem;
+    }
+
+    .apply-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgb(var(--accent));
+        border: none;
+        color: white;
+        padding: 0.7rem 1.2rem;
+        border-radius: 5px;
+        margin-top: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .apply-btn:hover {
+        background: rgb(var(--accent-light));
+        transform: translateX(5px);
+    }
+
+    .arrow {
+        transition: transform 0.3s ease;
+    }
+
+    .apply-btn:hover .arrow {
+        transform: translateX(5px);
+    }
+</style>

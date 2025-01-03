@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import SocialLink from '../components/SocialLink.astro';
+
+const socialLinks = [
+    {
+        platform: "Email",
+        url: "mailto:surikadavath175@gmail.com",
+        icon: "📧"
+    },
+    {
+        platform: "LinkedIn",
+        url: "https://linkedin.com/in/surikadavath",
+        icon: "💼"
+    },
+    {
+        platform: "Instagram",
+        url: "https://www.instagram.com/web_enthusiast_2024/",
+        icon: "📸"
+    },
+    {
+        platform: "YouTube",
+        url: "https://youtube.com/@suresh.k1202?si=GRaV4ULGB3APojWq",
+        icon: "🎥"
+    }
+];
+---
+
+<Layout title="Contact - GovtJobUpdates">
+    <main>
+        <SectionTitle 
+            title="Contact Us"
+            subtitle="Connect with us on social media or drop us an email"
+        />
+        
+        <div class="contact-grid">
+            {socialLinks.map(link => (
+                <SocialLink {...link} />
+            ))}
+        </div>
+
+        <section class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>
+                Have questions about government job opportunities? 
+                Feel free to reach out through any of the channels above. 
+                We typically respond within 24 hours.
+            </p>
+            <p>
+                Subscribe to our YouTube channel for video updates about latest job openings, 
+                exam preparation tips, and interview guidance.
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    main {
+        margin: auto;
+        padding: 2rem;
+        width: 800px;
+        max-width: calc(100% - 2rem);
+        color: white;
+    }
+    
+    .contact-grid {
+        display: grid;
+        gap: 1.2rem;
+        margin: 2rem auto 4rem;
+        max-width: 600px;
+        padding: 0 1rem;
+    }
+    
+    .contact-info {
+        text-align: center;
+        background: rgba(var(--accent-dark), 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: rgb(var(--accent-light));
+        background: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    p {
+        margin-bottom: 1.2rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    @media (max-width: 768px) {
+        .contact-info {
+            padding: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>

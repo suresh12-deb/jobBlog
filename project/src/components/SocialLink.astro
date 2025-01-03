@@ -1,0 +1,99 @@
+---
+interface Props {
+    platform: string;
+    url: string;
+    icon: string;
+}
+
+const { platform, url, icon } = Astro.props;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="social-link">
+    <span class="icon">{icon}</span>
+    <span class="platform">{platform}</span>
+    <span class="arrow">→</span>
+</a>
+
+<style>
+    .social-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem;
+        background: rgba(var(--accent-dark), 0.2);
+        border: 1px solid rgba(var(--accent-light), 0.1);
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(var(--accent), 0.1),
+            rgba(var(--accent-light), 0.1)
+        );
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .social-link:hover {
+        transform: translateY(-3px);
+        border-color: rgba(var(--accent-light), 0.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-link:hover::before {
+        transform: translateX(0);
+    }
+
+    .icon {
+        font-size: 1.8rem;
+        transition: transform 0.3s ease;
+    }
+
+    .social-link:hover .icon {
+        transform: scale(1.1);
+    }
+
+    .platform {
+        font-size: 1.1rem;
+        font-weight: 500;
+        flex-grow: 1;
+    }
+
+    .arrow {
+        font-size: 1.2rem;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .social-link:hover .arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+        .social-link {
+            padding: 1rem;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+        }
+        
+        .platform {
+            font-size: 1rem;
+        }
+    }
+</style>

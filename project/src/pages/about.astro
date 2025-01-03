@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+
+const features = [
+    {
+        icon: "🔍",
+        title: "Latest Updates",
+        description: "Daily updates on government job opportunities across all sectors"
+    },
+    {
+        icon: "📱",
+        title: "Easy Access",
+        description: "User-friendly interface to browse and search job openings"
+    },
+    {
+        icon: "🎯",
+        title: "Accurate Information",
+        description: "Verified information directly from official government sources"
+    },
+    {
+        icon: "⏰",
+        title: "Timely Notifications",
+        description: "Never miss important deadlines with our notification system"
+    }
+];
+---
+
+<Layout title="About - GovtJobUpdates">
+    <main>
+        <SectionTitle 
+            title="About Us"
+            subtitle="Your trusted source for government job opportunities across India"
+        />
+        
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p>
+                At GovtJobUpdates, we are committed to bridging the gap between job seekers and government opportunities. 
+                We provide accurate, timely, and comprehensive information about central and state government job openings, 
+                making the job search process simpler and more accessible for everyone.
+            </p>
+        </section>
+
+        <section class="features">
+            <h2>What We Offer</h2>
+            <div class="features-grid">
+                {features.map(feature => (
+                    <FeatureCard {...feature} />
+                ))}
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    main {
+        margin: auto;
+        padding: 2rem;
+        width: 1200px;
+        max-width: calc(100% - 2rem);
+        color: white;
+    }
+    section {
+        margin-bottom: 4rem;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: rgb(var(--accent-light));
+    }
+    .mission p {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+</style>
